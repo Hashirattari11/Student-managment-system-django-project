@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2 class="mb-4 text-center">Edit Student</h2>
+
+  {% if messages %}
+    {% for message in messages %}
+      <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+    {% endfor %}
+  {% endif %}
+
+  <form method="POST">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label class="form-label">Name</label>
+      <input type="text" name="name" class="form-control" value="{{ student.student_name }}" required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Email</label>
+      <input type="email" name="email" class="form-control" value="{{ student.student_email }}" required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Age</label>
+      <input type="number" name="age" class="form-control" value="{{ student.student_age }}" min="1">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Address</label>
+      <textarea name="address" class="form-control" rows="3">{{ student.student_address }}</textarea>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Department</label>
+      <select name="department" class="form-select">
+        <option value="">Select Department</option>
+        {% for d in departments %}
+          <option value="{{ d.id }}" {% if student.student_department and student.student_department.id == d.id %}selected{% endif %}>
+            {{ d.department }}
+          </option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Student ID</label>
+      <select name="studentid" class="form-select">
+        <option value="">Select ID</option>
+        {% for sid in ids %}
+          <option value="{{ sid.id }}" {% if student.student_id and student.student_id.id == sid.id %}selected{% endif %}>
+            {{ sid.id }}
+          </option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <button type="submit" class="btn btn-success">Update</button>
+    <a href="{% url 'student_list' %}" class="btn btn-secondary">Back</a>
+  </form>
+</div>
+{% endblock %}

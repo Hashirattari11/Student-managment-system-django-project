@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2 class="mb-4 text-center">Add Student</h2>
+
+  <!-- Display messages -->
+  {% if messages %}
+    {% for message in messages %}
+      <div class="alert alert-{{ message.tags }}">
+        {{ message }}
+      </div>
+    {% endfor %}
+  {% endif %}
+
+  <form method="POST">
+    {% csrf_token %}
+    
+    <!-- Name -->
+    <div class="mb-3">
+      <label class="form-label">Student Name</label>
+      <input type="text" name="name" class="form-control" required>
+    </div>
+
+    <!-- Email -->
+    <div class="mb-3">
+      <label class="form-label"> Email</label>
+      <input type="email" name="email" class="form-control" required>
+    </div>
+
+    <!-- Age -->
+    <div class="mb-3">
+      <label class="form-label">Age</label>
+      <input type="number" name="age" class="form-control" value="18" min="1">
+    </div>
+
+    <!-- Address -->
+    <div class="mb-3">
+      <label class="form-label">Address</label>
+      <textarea name="address" class="form-control" rows="3"></textarea>
+    </div>
+
+    <!-- Department Dropdown -->
+<select name="department" class="form-select p-2">
+  <option value="">Select Department</option>
+  {% for d in departments %}
+    <option value="{{ d.id }}">{{ d.department }}</option>
+  {% endfor %}
+</select>
+
+
+<!-- Student ID Dropdown -->
+<div class="mb-3">
+  <label class="form-label">Student ID</label>
+  <input type="text" name="employee_id" class="form-control" value="{{ employee_id }}" required>
+</div>
+
+<select name="subject" class="form-select p-3" required>
+  <option value="">------ Select Subject ------</option>
+  <option value="computer">Computer</option>
+  <option value="C">C</option>
+  <option value="C++">C++</option>
+  <option value="Java">Java</option>
+  <option value="Python">Python</option>
+  <option value="Javascript">Javascript</option>
+  <option value="Ruby">Ruby</option>
+  <option value="node.js">Node.js</option>
+</select>
+
+
+<br>
+
+    <!-- Buttons -->
+    <button type="submit" class="btn btn-success">Save</button>
+    <a href="{% url 'student_list' %}" class="btn btn-secondary">Back</a>
+  </form>
+</div>
+{% endblock %}
