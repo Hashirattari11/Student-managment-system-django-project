@@ -24,7 +24,7 @@
 
     <!-- Email -->
     <div class="mb-3">
-      <label class="form-label"> Email</label>
+      <label class="form-label">Email</label>
       <input type="email" name="email" class="form-control" required>
     </div>
 
@@ -41,34 +41,37 @@
     </div>
 
     <!-- Department Dropdown -->
-<select name="department" class="form-select p-2">
-  <option value="">Select Department</option>
-  {% for d in departments %}
-    <option value="{{ d.id }}">{{ d.department }}</option>
-  {% endfor %}
-</select>
+    <div class="mb-3">
+      <label class="form-label">Department</label>
+      <select name="department" class="form-select" required>
+        <option value="">Select Department</option>
+        {% for d in departments %}
+          <option value="{{ d.id }}">{{ d.department }}</option>
+        {% endfor %}
+      </select>
+    </div>
 
+    <!-- Student ID -->
+    <div class="mb-3">
+      <label class="form-label">Student ID</label>
+      <input type="text" name="employee_id" class="form-control" value="{{ employee_id }}" readonly>
+    </div>
 
-<!-- Student ID Dropdown -->
-<div class="mb-3">
-  <label class="form-label">Student ID</label>
-  <input type="text" name="employee_id" class="form-control" value="{{ employee_id }}" required>
-</div>
-
-<select name="subject" class="form-select p-3" required>
-  <option value="">------ Select Subject ------</option>
-  <option value="computer">Computer</option>
-  <option value="C">C</option>
-  <option value="C++">C++</option>
-  <option value="Java">Java</option>
-  <option value="Python">Python</option>
-  <option value="Javascript">Javascript</option>
-  <option value="Ruby">Ruby</option>
-  <option value="node.js">Node.js</option>
-</select>
-
-
-<br>
+    <!-- Subject -->
+    <div class="mb-3">
+      <label class="form-label">Subject</label>
+      <select name="subject" class="form-select p-2" required>
+        <option value="">------ Select Subject ------</option>
+        <option value="Computer">Computer</option>
+        <option value="C">C</option>
+        <option value="C++">C++</option>
+        <option value="Java">Java</option>
+        <option value="Python">Python</option>
+        <option value="Javascript">Javascript</option>
+        <option value="Ruby">Ruby</option>
+        <option value="Node.js">Node.js</option>
+      </select>
+    </div>
 
     <!-- Buttons -->
     <button type="submit" class="btn btn-success">Save</button>

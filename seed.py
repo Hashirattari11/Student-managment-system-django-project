@@ -1,7 +1,7 @@
 from faker import Faker
 import random
 from .models import *
-from home.models import Subject, subject_marks
+from .models import Subject, subject_marks
 
 fake = Faker()
 

@@ -11,7 +11,6 @@ class Department(models.Model):
 
 
 class StudentID(models.Model):
-    
     id = models.CharField(max_length=20, primary_key=True)
 
     def __str__(self):
@@ -44,17 +43,22 @@ class Student(models.Model):
     class Meta:
         ordering = ['student_name']
         verbose_name = "student"
+
+
 class Subject(models.Model):
     subject_name = models.CharField(max_length=100)
-    def __str__(self):
-        return self.Subject_name
 
-class subject_marks(models.Model):
-    student = models.ForeignKey(Student, related_name ="student_marks" , on_delete=models.CASCADE)
+    def __str__(self):
+        return self.subject_name   # FIXED
+
+
+class subjectMarks(models.Model):   # FIXED class name
+    student = models.ForeignKey(Student, related_name="student_marks", on_delete=models.CASCADE)
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
     marks = models.IntegerField()
 
     def __str__(self):
         return f"{self.student.student_name} - {self.subject.subject_name}"
+
     class Meta:
         unique_together = ('student', 'subject')
